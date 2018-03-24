@@ -17,10 +17,10 @@
  * See rszshm_mk for search details.
  */
 struct rszshm_scan {
-	void *start;
-	size_t len;
-	size_t hop;
-	unsigned iter;
+    void *start;
+    size_t len;
+    size_t hop;
+    unsigned iter;
 };
 
 #define KiB (1024UL)
@@ -45,9 +45,9 @@ struct rszshm_scan {
  * flen is updated each time the file and shared region is grown.
  */
 struct rszshm_hdr {
-	size_t flen;
-	size_t max;
-	void *addr;
+    size_t flen;
+    size_t max;
+    void *addr;
 };
 
 /**
@@ -64,12 +64,12 @@ struct rszshm_hdr {
 #define RSZSHM_PATH_MAX 128
 #define RSZSHM_DFLT_FNAME "/dev/shm/rszshm_XXXXXX/0"
 struct rszshm {
-	int fd;
-	size_t flen;
-	char fname[RSZSHM_PATH_MAX];
-	struct rszshm_hdr *hdr;
-	void *dat;
-	size_t cap;
+    int fd;
+    size_t flen;
+    char fname[RSZSHM_PATH_MAX];
+    struct rszshm_hdr *hdr;
+    void *dat;
+    size_t cap;
 };
 
 /**
@@ -143,13 +143,13 @@ void *rszshm_mk(struct rszshm *r, size_t flen, const char *fname, struct rszshm_
  * Returns: result of rszshm_mk
  */
 #define rszshm_mkm(r, fl, fn) ({			\
-	void *__p = NULL;				\
-	r = malloc(sizeof(*r));				\
-	if (r && !(__p = rszshm_mk(r, fl, fn))) {	\
-		free(r);				\
-		r = 0;					\
-	}						\
-	__p;						\
+    void *__p = NULL;				\
+    r = malloc(sizeof(*r));				\
+    if (r && !(__p = rszshm_mk(r, fl, fn))) {	\
+        free(r);				\
+        r = 0;					\
+    }						\
+    __p;						\
 })
 #endif
 
@@ -198,13 +198,13 @@ void *rszshm_at(struct rszshm *r, const char *fname);
  * Returns: result of rszshm_at
  */
 #define rszshm_atm(r, f) ({				\
-	void *__p = NULL;				\
-	r = malloc(sizeof(*r));				\
-	if (r && !(__p = rszshm_at(r, f))) {		\
-		free(r);				\
-		r = 0;					\
-	}						\
-	__p;						\
+    void *__p = NULL;				\
+    r = malloc(sizeof(*r));				\
+    if (r && !(__p = rszshm_at(r, f))) {		\
+        free(r);				\
+        r = 0;					\
+    }						\
+    __p;						\
 })
 #endif
 
@@ -274,12 +274,12 @@ int rszshm_rmdir(struct rszshm *r);
  * Returns: 0 on success, -1 on error
  */
 #define rszshm_rm(r) ({				\
-	int __ret;				\
-	assert(r);				\
-	__ret = rszshm_unlink(r);		\
-	if (__ret == 0)				\
-		__ret = rszshm_rmdir(r);	\
-	__ret;					\
+    int __ret;				\
+    assert(r);				\
+    __ret = rszshm_unlink(r);		\
+    if (__ret == 0)				\
+        __ret = rszshm_rmdir(r);	\
+    __ret;					\
 })
 #endif
 
@@ -291,10 +291,10 @@ int rszshm_rmdir(struct rszshm *r);
  * Returns: result of rszshm_dt
  */
 #define rszshm_free(r) ({	\
-	int __i = rszshm_dt(r);	\
-	free(r);		\
-	r = 0;			\
-	__i;			\
+    int __i = rszshm_dt(r);	\
+    free(r);		\
+    r = 0;			\
+    __i;			\
 })
 #endif
 
